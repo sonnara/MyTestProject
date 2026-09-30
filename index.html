@@ -1,803 +1,195 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="ko">
 <head>
-<meta charset="UTF-8">
-
-<meta name="viewport"
-      content="width=device-width,
-               initial-scale=1.0,
-               maximum-scale=1.0,
-               user-scalable=no">
-
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
 <meta name="theme-color" content="#ffffff">
-
 <title>송금하기</title>
-
 <style>
-
-* {
-    box-sizing: border-box;
-    -webkit-tap-highlight-color: transparent;
-}
-
-body {
-    margin: 0;
-    background: #f3f5f7;
-    font-family:
-        -apple-system,
-        BlinkMacSystemFont,
-        "Noto Sans KR",
-        "SamsungOne",
-        sans-serif;
-
-    color: #202124;
-}
-
-.container {
-    width: 100%;
-    max-width: 480px;
-    margin: 0 auto;
-
-    min-height: 100vh;
-
-    padding:
-        25px
-        18px
-        40px;
-}
-
-.card {
-    background: #ffffff;
-
-    border-radius: 22px;
-
-    padding:
-        25px
-        20px
-        28px;
-
-    box-shadow:
-        0 5px 25px
-        rgba(0,0,0,.07);
-}
-
-/* 제목 */
-
-.title {
-    font-size: 26px;
-    font-weight: 800;
-
-    margin-bottom: 7px;
-}
-
-.description {
-    color: #777;
-    font-size: 14px;
-
-    line-height: 1.5;
-
-    margin-bottom: 22px;
-}
-
-/* 계좌 */
-
-.account-box {
-
-    background: #f6f7f9;
-
-    border-radius: 16px;
-
-    padding: 18px;
-
-    margin-bottom: 15px;
-}
-
-.bank-name {
-
-    font-size: 14px;
-
-    color: #777;
-
-    margin-bottom: 7px;
-}
-
-.account-number {
-
-    font-size: 24px;
-
-    font-weight: 800;
-
-    letter-spacing: .4px;
-}
-
-.holder {
-
-    margin-top: 8px;
-
-    color: #666;
-
-    font-size: 14px;
-}
-
-
-/* 복사 버튼 */
-
-.copy-button {
-
-    width: 100%;
-
-    height: 56px;
-
-    border: 0;
-
-    border-radius: 14px;
-
-    background: #222;
-
-    color: white;
-
-    font-size: 17px;
-
-    font-weight: 700;
-
-    cursor: pointer;
-
-    margin-bottom: 25px;
-}
-
-.copy-button:active {
-
-    transform: scale(.98);
-
-    background: #111;
-}
-
-
-/* 복사 완료 */
-
-.message {
-
-    display: none;
-
-    text-align: center;
-
-    color: #168344;
-
-    font-size: 14px;
-
-    font-weight: 600;
-
-    margin-bottom: 12px;
-}
-
-
-/* 은행 */
-
-.section-title {
-
-    font-size: 17px;
-
-    font-weight: 800;
-
-    margin-bottom: 12px;
-}
-
-.bank-grid {
-
-    display: grid;
-
-    grid-template-columns:
-        1fr 1fr;
-
-    gap: 10px;
-}
-
-.bank-button {
-
-    height: 55px;
-
-    border:
-        1px solid #e0e0e0;
-
-    border-radius: 13px;
-
-    background: #ffffff;
-
-    font-size: 15px;
-
-    font-weight: 600;
-
-    color: #333;
-
-    cursor: pointer;
-}
-
-.bank-button:active {
-
-    background: #f0f0f0;
-
-    transform: scale(.98);
-}
-
-
-/* 안내 */
-
-.notice {
-
-    margin-top: 20px;
-
-    text-align: center;
-
-    color: #999;
-
-    font-size: 12px;
-
-    line-height: 1.6;
-}
-
-
-/* 앱 실행 안내 */
-
-.app-message {
-
-    display: none;
-
-    margin-top: 15px;
-
-    padding: 13px;
-
-    border-radius: 12px;
-
-    background: #f1f6ff;
-
-    color: #315a9b;
-
-    text-align: center;
-
-    font-size: 13px;
-
-    line-height: 1.5;
-}
-
+*{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+body{margin:0;background:#f4f6f8;color:#202124;font-family:-apple-system,BlinkMacSystemFont,"Noto Sans KR","SamsungOne",sans-serif}
+.wrap{max-width:480px;margin:auto;padding:22px 16px 36px}
+.card{background:#fff;border-radius:22px;padding:24px 18px 26px;box-shadow:0 5px 24px rgba(0,0,0,.07)}
+h1{font-size:26px;margin:0 0 7px;font-weight:800}
+.sub{font-size:14px;color:#777;line-height:1.5;margin-bottom:20px}
+.account{background:#f6f7f9;border-radius:15px;padding:18px;margin-bottom:12px}
+.bank{font-size:14px;color:#777;margin-bottom:7px}
+.number{font-size:24px;font-weight:800;letter-spacing:.3px}
+.holder{font-size:14px;color:#666;margin-top:7px}
+.copy{width:100%;height:56px;border:0;border-radius:14px;background:#222;color:#fff;font-size:17px;font-weight:800;margin-bottom:24px}
+.copy:active,.bankBtn:active{transform:scale(.98)}
+.copyText{display:none;text-align:center;color:#14823b;font-size:13px;font-weight:700;margin:-12px 0 16px}
+.title{font-size:17px;font-weight:800;margin-bottom:11px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.bankBtn{height:54px;border:1px solid #dedede;background:#fff;border-radius:13px;font-size:15px;font-weight:700;color:#333}
+.status{display:none;margin-top:16px;background:#f1f6ff;color:#315a9b;border-radius:12px;padding:13px;text-align:center;font-size:13px;line-height:1.5}
+.note{font-size:12px;color:#999;text-align:center;line-height:1.6;margin-top:18px}
 </style>
-
 </head>
-
-
 <body>
+<div class="wrap">
+  <div class="card">
+    <h1>송금하기</h1>
+    <div class="sub">계좌번호를 복사하거나<br>사용하시는 은행 앱을 선택하세요.</div>
 
-
-<div class="container">
-
-<div class="card">
-
-
-<div class="title">
-    송금하기
-</div>
-
-
-<div class="description">
-    계좌번호를 복사하거나<br>
-    사용하시는 은행 앱을 선택하세요.
-</div>
-
-
-<!-- 계좌 정보 -->
-
-<div class="account-box">
-
-    <div class="bank-name">
-        카카오뱅크
+    <div class="account">
+      <div class="bank">입금은행</div>
+      <div class="number">카카오뱅크</div>
+      <div class="holder">계좌번호 79421337704 · 예금주 정근원</div>
     </div>
 
-    <div class="account-number">
-        79421337704
+    <button class="copy" onclick="copyAccountOnly()">계좌번호 + 은행명 복사</button>
+    <div id="copyText" class="copyText">79421337704 카카오뱅크가 복사되었습니다.</div>
+
+    <div class="title">은행 앱으로 바로가기</div>
+
+    <div class="grid">
+      <button class="bankBtn" onclick="openBank('KB국민은행')">KB국민은행</button>
+      <button class="bankBtn" onclick="openBank('신한은행')">신한은행</button>
+      <button class="bankBtn" onclick="openBank('우리은행')">우리은행</button>
+      <button class="bankBtn" onclick="openBank('하나은행')">하나은행</button>
+      <button class="bankBtn" onclick="openBank('NH농협은행')">NH농협은행</button>
+      <button class="bankBtn" onclick="openBank('IBK기업은행')">IBK기업은행</button>
+      <button class="bankBtn" onclick="openBank('카카오뱅크')">카카오뱅크</button>
+      <button class="bankBtn" onclick="openBank('토스뱅크')">토스뱅크</button>
+      <button class="bankBtn" onclick="openBank('케이뱅크')">케이뱅크</button>
+      <button class="bankBtn" onclick="openBank('SC제일은행')">SC제일은행</button>
     </div>
 
-    <div class="holder">
-        예금주 정근원
+    <div id="status" class="status"></div>
+
+    <div class="note">
+      은행을 누르면 먼저 <b>79421337704 카카오뱅크</b>를 복사한 뒤<br>
+      해당 은행 앱 실행을 시도합니다.
     </div>
-
+  </div>
 </div>
-
-
-<div id="message"
-     class="message">
-
-    계좌번호가 복사되었습니다.
-
-</div>
-
-
-<button
-    class="copy-button"
-    onclick="copyAccount()">
-
-    계좌번호 복사
-
-</button>
-
-
-<!-- 은행 목록 -->
-
-<div class="section-title">
-
-    은행 앱 선택
-
-</div>
-
-
-<div class="bank-grid">
-
-
-<button
-    class="bank-button"
-    onclick="openBank('kb')">
-
-    KB국민은행
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('shinhan')">
-
-    신한은행
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('woori')">
-
-    우리은행
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('hana')">
-
-    하나은행
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('nh')">
-
-    NH농협은행
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('ibk')">
-
-    IBK기업은행
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('kakao')">
-
-    카카오뱅크
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('toss')">
-
-    토스뱅크
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('kbank')">
-
-    케이뱅크
-
-</button>
-
-
-<button
-    class="bank-button"
-    onclick="openBank('sc')">
-
-    SC제일은행
-
-</button>
-
-
-</div>
-
-
-<div id="appMessage"
-     class="app-message">
-
-    계좌번호를 복사했습니다.<br>
-    은행 앱을 실행합니다.
-
-</div>
-
-
-<div class="notice">
-
-    은행을 선택하면 계좌번호가 먼저 복사됩니다.<br>
-    이후 해당 은행 앱 실행을 시도합니다.
-
-</div>
-
-
-</div>
-
-</div>
-
 
 <script>
+const ACCOUNT = "79421337704";
+const RECIPIENT_BANK = "카카오뱅크";
+const COPY_VALUE = ACCOUNT + " " + RECIPIENT_BANK;
 
-
-/* ============================
-   계좌 정보
-============================ */
-
-const ACCOUNT_NUMBER =
-    "79421337704";
-
-
-/* ============================
-   계좌번호 복사
-============================ */
-
-async function copyAccount() {
-
-    try {
-
-        await navigator.clipboard
-            .writeText(ACCOUNT_NUMBER);
-
-    }
-
-    catch (error) {
-
-        /*
-         * 구형 브라우저용 fallback
-         */
-
-        const textarea =
-            document.createElement("textarea");
-
-        textarea.value =
-            ACCOUNT_NUMBER;
-
-        textarea.style.position =
-            "fixed";
-
-        textarea.style.left =
-            "-9999px";
-
-        document.body.appendChild(
-            textarea
-        );
-
-        textarea.focus();
-
-        textarea.select();
-
-        document.execCommand("copy");
-
-        textarea.remove();
-    }
-
-
-    showMessage();
-}
-
-
-/* ============================
-   복사 메시지
-============================ */
-
-function showMessage() {
-
-    const message =
-        document.getElementById(
-            "message"
-        );
-
-    message.style.display =
-        "block";
-
-
-    setTimeout(function() {
-
-        message.style.display =
-            "none";
-
-    }, 1800);
-}
-
-
-/* ============================
-   은행 앱 정보
-============================ */
-
+/*
+ * Android 앱 패키지.
+ * 이 페이지는 '선택한 은행 앱을 실행'하는 것까지를 목표로 합니다.
+ * 은행 앱의 이체 화면/계좌 자동입력은 각 은행의 공식 딥링크가
+ * 별도로 공개된 경우에만 추가할 수 있습니다.
+ */
 const BANKS = {
-
-
-    kb: {
-
-        name:
-            "KB국민은행",
-
-        package:
-            "com.kbstar.kbbank",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.kbstar.kbbank"
-
-    },
-
-
-    shinhan: {
-
-        name:
-            "신한은행",
-
-        package:
-            "com.shinhan.sbanking",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.shinhan.sbanking"
-
-    },
-
-
-    woori: {
-
-        name:
-            "우리은행",
-
-        package:
-            "com.wooribank.smart.npib",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.wooribank.smart.npib"
-
-    },
-
-
-    hana: {
-
-        name:
-            "하나은행",
-
-        package:
-            "com.hanabank.oqf",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.hanabank.oqf"
-
-    },
-
-
-    nh: {
-
-        name:
-            "NH농협은행",
-
-        /*
-         * NH 앱 패키지는 향후 변경 가능성이 있어
-         * Play Store 링크 fallback 사용
-         */
-
-        package:
-            null,
-
-        playStore:
-            "https://play.google.com/store/search?q=NH%EC%8A%A4%EB%A7%88%ED%8A%B8%EB%B1%85%ED%82%B9&c=apps"
-
-    },
-
-
-    ibk: {
-
-        name:
-            "IBK기업은행",
-
-        package:
-            "com.ibk.android.ionebank",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.ibk.android.ionebank"
-
-    },
-
-
-    kakao: {
-
-        name:
-            "카카오뱅크",
-
-        package:
-            "com.kakaobank.channel",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.kakaobank.channel"
-
-    },
-
-
-    toss: {
-
-        name:
-            "토스뱅크",
-
-        /*
-         * 토스뱅크는 별도 은행앱이 아니라
-         * 토스 앱에서 이용
-         */
-
-        package:
-            "com.toss.android",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.toss.android"
-
-    },
-
-
-    kbank: {
-
-        name:
-            "케이뱅크",
-
-        package:
-            "com.kbankwith.smartbank",
-
-        playStore:
-            "https://play.google.com/store/apps/details?id=com.kbankwith.smartbank"
-
-    },
-
-
-    sc: {
-
-        name:
-            "SC제일은행",
-
-        package:
-            null,
-
-        playStore:
-            "https://play.google.com/store/search?q=SC%EC%A0%9C%EC%9D%BC%EC%9D%80%ED%96%89&c=apps"
-
-    }
-
+  "KB국민은행": {
+    pkg: "com.kbstar.kbbank",
+    store: "https://play.google.com/store/apps/details?id=com.kbstar.kbbank"
+  },
+  "신한은행": {
+    pkg: "com.shinhan.sbanking",
+    store: "https://play.google.com/store/apps/details?id=com.shinhan.sbanking"
+  },
+  "우리은행": {
+    pkg: "com.wooribank.smart.npib",
+    store: "https://play.google.com/store/apps/details?id=com.wooribank.smart.npib"
+  },
+  "하나은행": {
+    pkg: "com.hanabank.oqf",
+    store: "https://play.google.com/store/apps/details?id=com.hanabank.oqf"
+  },
+  "NH농협은행": {
+    pkg: "nh.smart.banking",
+    store: "https://play.google.com/store/apps/details?id=nh.smart.banking"
+  },
+  "IBK기업은행": {
+    pkg: "com.ibk.android.ionebank",
+    store: "https://play.google.com/store/apps/details?id=com.ibk.android.ionebank"
+  },
+  "카카오뱅크": {
+    pkg: "com.kakaobank.channel",
+    store: "https://play.google.com/store/apps/details?id=com.kakaobank.channel"
+  },
+  "토스뱅크": {
+    pkg: "com.toss.android",
+    store: "https://play.google.com/store/apps/details?id=com.toss.android"
+  },
+  "케이뱅크": {
+    pkg: "com.kbankwith.smartbank",
+    store: "https://play.google.com/store/apps/details?id=com.kbankwith.smartbank"
+  },
+  "SC제일은행": {
+    pkg: "com.scbank.ma30",
+    store: "https://play.google.com/store/apps/details?id=com.scbank.ma30"
+  }
 };
 
-
-/* ============================
-   은행 앱 실행
-============================ */
-
-async function openBank(bankCode) {
-
-
-    const bank =
-        BANKS[bankCode];
-
-
-    if (!bank) {
-
-        return;
-
-    }
-
-
-    /*
-     * 1.
-     * 계좌번호 복사
-     */
-
-    await copyAccount();
-
-
-    /*
-     * 2.
-     * 안내 표시
-     */
-
-    const appMessage =
-        document.getElementById(
-            "appMessage"
-        );
-
-    appMessage.innerHTML =
-        bank.name +
-        " 앱을 실행합니다.<br>" +
-        "계좌번호가 클립보드에 복사되었습니다.";
-
-    appMessage.style.display =
-        "block";
-
-
-    /*
-     * 3.
-     * 앱 패키지가 확인된 경우
-     * Android Intent 실행
-     */
-
-    if (bank.package) {
-
-        const intentUrl =
-            "intent://open" +
-            "#Intent;" +
-            "scheme=" +
-            bankCode +
-            ";" +
-            "package=" +
-            bank.package +
-            ";" +
-            "end";
-
-
-        /*
-         * Android Chrome / 삼성 인터넷
-         */
-
-        window.location.href =
-            intentUrl;
-
-
-        /*
-         * 앱이 없는 경우
-         * Play Store fallback
-         */
-
-        setTimeout(function() {
-
-            window.location.href =
-                bank.playStore;
-
-        }, 1800);
-
-    }
-
-    else {
-
-        /*
-         * 공식 패키지가 확실하지 않은 은행은
-         * 바로 Play Store 검색으로 이동
-         */
-
-        setTimeout(function() {
-
-            window.location.href =
-                bank.playStore;
-
-        }, 500);
-
-    }
-
+async function copyText(text) {
+  try {
+    await navigator.clipboard.writeText(text);
+    return true;
+  } catch (e) {
+    const ta = document.createElement("textarea");
+    ta.value = text;
+    ta.style.position = "fixed";
+    ta.style.left = "-9999px";
+    document.body.appendChild(ta);
+    ta.focus();
+    ta.select();
+    const ok = document.execCommand("copy");
+    ta.remove();
+    return ok;
+  }
 }
 
+async function copyAccountOnly() {
+  await copyText(COPY_VALUE);
+  const el = document.getElementById("copyText");
+  el.style.display = "block";
+  setTimeout(() => el.style.display = "none", 1800);
+}
 
+async function openBank(name) {
+  const bank = BANKS[name];
+  if (!bank) return;
+
+  // 1) 계좌번호 + 입금은행을 먼저 복사
+  await copyText(COPY_VALUE);
+
+  const status = document.getElementById("status");
+  status.innerHTML =
+    "<b>" + name + "</b> 앱을 실행합니다.<br>" +
+    "79421337704 카카오뱅크가 클립보드에 복사되었습니다.";
+  status.style.display = "block";
+
+  /*
+   * 갤럭시/Android 브라우저에서 앱의 런처 Activity를
+   * package 지정 Intent로 호출합니다.
+   */
+  const intent =
+    "intent:#Intent;" +
+    "action=android.intent.action.MAIN;" +
+    "category=android.intent.category.LAUNCHER;" +
+    "package=" + bank.pkg + ";" +
+    "end";
+
+  let leftPage = false;
+
+  const onVisibility = () => {
+    if (document.visibilityState === "hidden") {
+      leftPage = true;
+    }
+  };
+  document.addEventListener("visibilitychange", onVisibility, {once:false});
+
+  window.location.href = intent;
+
+  /*
+   * 앱이 없거나 브라우저가 Intent를 차단한 경우에만
+   * Play 스토어로 fallback.
+   */
+  setTimeout(() => {
+    if (!leftPage && document.visibilityState === "visible") {
+      window.location.href = bank.store;
+    }
+    document.removeEventListener("visibilitychange", onVisibility);
+  }, 1800);
+}
 </script>
-
-
 </body>
-
 </html>
